@@ -20,16 +20,16 @@ n_terms <- 10 #4000000000
 # Brute force method -----------------------------------------------------------
 # NOTE: It would be terrible idea to brute force for a sequence of 4 million
 # Create Fibonacci sequence
-fibv_seq <- numeric(n_terms)
-fibv_seq[1] <- 1
-fibv_seq[2] <- 1
+fib_seq <- numeric(n_terms)
+fib_seq[1] <- 1
+fib_seq[2] <- 1
 for (i in 3:n_terms) { 
-  fibv_seq[i] <- fibv_seq[i-1]+fibv_seq[i-2]
+  fib_seq[i] <- fib_seq[i-1]+fib_seq[i-2]
 } 
 
 # Get selected sums of within Fibonacci sequence
 sum <- 0 
-for (i in 1:length(fibv_seq)) {
+for (i in 1:length(fib_seq)) {
   if (i %% 2 == 0) {
     sum <- sum + i
   }
@@ -38,6 +38,23 @@ for (i in 1:length(fibv_seq)) {
 # A vectorized method ----------------------------------------------------------
 # Define a Fibonacci sequence
 # Find even-numbered elements and sum them
+
+# A functional method ----------------------------------------------------------
+# fib <- function(n){
+#   # HT: http://bit.?ly/1iVRHLE
+#   a=0
+#   b=1
+#   for(i in 1:n){
+#     t=b
+#     b=a
+#     a=a+t
+#     }
+#   a
+# } 
+
+# Uses packages ---------------------------------------------------------------
+require("numbers")
+fib_seq <- fibonacci(n_terms, sequence = TRUE)
 
 # Write out results ------------------------------------------------------------
 cat("The sum of the even-valued terms in a Fibonacci sequence below",
