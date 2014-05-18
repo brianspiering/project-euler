@@ -18,7 +18,7 @@ stop_number <- 1000
 # Brute force method -----------------------------------------------------------
 final_sum <- 0
 for (i in 1:stop_number-1) {
-  if ((i %% 3 == 0) | (i %% 5 ==0)) {
+  if ((i %% 3 == 0) || (i %% 5 ==0)) {
     final_sum <- final_sum + i
   }
 }
