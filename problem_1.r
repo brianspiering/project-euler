@@ -1,4 +1,4 @@
-#! /usr/bin/env Rscript
+#!/usr/bin/env Rscript
 
 # File description -------------------------------------------------------------
 # Solutions to problem 1, http://projecteuler.net/problem=1
@@ -15,10 +15,10 @@ rm(list=ls()) # Delete all variables
 stop_number <- 1000
 
 # Brute force method -----------------------------------------------------------
-final_sum <- 0
+final_sum_method_1 <- 0
 for (i in 1:stop_number-1) {
   if ((i %% 3 == 0) || (i %% 5 ==0)) {
-    final_sum <- final_sum + i
+    final_sum_method_1 <- final_sum_method_1 + i
   }
 }
 
@@ -26,13 +26,14 @@ for (i in 1:stop_number-1) {
 sum_numbers_mod_3 <- sum(seq(0, stop_number-1, 3))
 sum_numbers_mod_5 <- sum(seq(0, stop_number-1, 5))
 sum_numbers_mod_15 <- sum(seq(0, stop_number-1, 15))
-final_sum <- sum_numbers_mod_3 + sum_numbers_mod_5 - sum_numbers_mod_15
+final_sum_method_2 <- sum_numbers_mod_3 + sum_numbers_mod_5 - sum_numbers_mod_15
 
 # Another vectorized method ----------------------------------------------------
 sequence <- (1:stop_number-1)
-final_sum <- (sum(sequence[sequence %% 3 == 0]) 
-              + sum(sequence[sequence %% 5 == 0])
-              - sum(sequence[sequence %% 15 == 0]))
+final_sum_method_3 <- (sum(sequence[sequence %% 3 == 0]) 
+                     + sum(sequence[sequence %% 5 == 0])
+                    - sum(sequence[sequence %% 15 == 0]))
 
 # Write out results ------------------------------------------------------------
-cat("The sum of all multiples of 3 or 5 below", stop_number, "is", final_sum, ".")
+print_sum <- final_sum_method_3
+cat("The sum of all multiples of 3 or 5 below", stop_number, "is", print_sum, ".")
