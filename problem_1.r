@@ -34,6 +34,13 @@ final_sum_method_3 <- (sum(sequence[sequence %% 3 == 0])
                      + sum(sequence[sequence %% 5 == 0])
                     - sum(sequence[sequence %% 15 == 0]))
 
-# Write out results ------------------------------------------------------------
-print_sum <- final_sum_method_3
-cat("The sum of all multiples of 3 or 5 below", stop_number, "is", print_sum, ".")
+# Write out results -----------------------------------------------------------
+sums_from_all_methods <- c(final_sum_method_1,
+                           final_sum_method_2, 
+                           final_sum_method_3)
+if (length(unique(sums_from_all_methods)) == 1) {
+  print_sum <- final_sum_method_1
+  cat("The sum of all multiples of 3 or 5 below", stop_number, "is", print_sum, ".")
+} else {
+  stop("Check methods")
+}

@@ -45,5 +45,4 @@ for (i in 1:number) {
 largest_prime_factor <- tail(prime_factors, n=1)
 
 # Write out results ------------------------------------------------------------
-cat("The largest prime factor of the number", number, "is",
-    largest_prime_factor, ".")
+cat("The largest prime factor of ", number, "is", largest_prime_factor, ".")
