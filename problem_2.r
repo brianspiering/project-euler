@@ -26,8 +26,10 @@ fib_seq <- numeric(n_terms)
 fib_seq[1] <- 1
 fib_seq[2] <- 2
 for (i in 3:n_terms) { 
-  fib_seq[i] <- fib_seq[i-1]+fib_seq[i-2]
+  fib_seq[i] <- fib_seq[i-1] + fib_seq[i-2]
 } 
+
+# Try to use cumsum(c(1,2))
 
 # Get selected sums of within Fibonacci sequence
 total_method_1 <- 0 
