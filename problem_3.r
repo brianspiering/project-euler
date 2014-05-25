@@ -12,7 +12,7 @@
 # Setup ------------------------------------------------------------------------
 cat("\014")   # Clear console
 rm(list=ls()) # Delete all variables
-number <- 600851475143
+number <- 13195 # 600851475143
 
 is_prime <- function(number) {
   # Test if a number is a prime
@@ -33,7 +33,7 @@ is_factor <- function(possible_factor, number) {
   }
 }
 
-# Brute force method -----------------------------------------------------------
+# A brute force method -----------------------------------------------------------
 prime_factors <- numeric()
 
 for (i in 1:number) {
@@ -42,7 +42,28 @@ for (i in 1:number) {
   } 
 }
 
-largest_prime_factor <- tail(prime_factors, n=1)
+largest_prime_factor_method_1 <- tail(prime_factors, n=1)
+
+# A package method --------------------------------------------------------------
+# List of packages for session
+.packages = c("numbers") 
+
+# Install required CRAN packages (if not already installed)
+.inst <- .packages %in% installed.packages()
+if(length(.packages[!.inst]) > 0) install.packages(.packages[!.inst])
+
+# Load packages into session 
+lapply(.packages, require, character.only=TRUE)
+
+largest_prime_factor_method_2 <- tail(primeFactors(number), n=1)
 
 # Write out results ------------------------------------------------------------
-cat("The largest prime factor of ", number, "is", largest_prime_factor, ".")
+results_from_all_methods <- c(largest_prime_factor_method_1,
+                              largest_prime_factor_method_2)
+
+if (length(unique(results_from_all_methods)) == 1) {
+  results_final <- results_from_all_methods[1]
+  cat("The largest prime factor of", number, "is", results_final, ".")
+} else {
+  stop("Check methods")
+}
