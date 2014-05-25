@@ -36,12 +36,12 @@ sum_numbers_mod_15 <- sum(seq(0, stop_number-1, 15))
 final_sum_method_2 <- sum_numbers_mod_3 + sum_numbers_mod_5 - sum_numbers_mod_15
 
 # Write out results -----------------------------------------------------------
-sums_from_all_methods <- c(final_sum_method_1,
-                           final_sum_method_2, 
-                           final_sum_method_3)
+results_from_all_methods <- c(final_sum_method_1,
+                              final_sum_method_2, 
+                              final_sum_method_3)
 
-if (length(unique(sums_from_all_methods)) == 1) {
-  print_sum <- final_sum_method_1
+if (length(unique(results_from_all_methods)) == 1) {
+  print_sum <- results_from_all_methods[1]
   cat("The sum of all multiples of 3 or 5 below", stop_number, 
       "is", print_sum, ".")
 } else {
