@@ -17,10 +17,26 @@ cat("\014")         # Clear console
 rm(list=ls())       # Delete all variables
 
 # A brute force method -----------------------------------------------------
-largest_factor <- 10 # 20
-smallest_multiple <- 2520
+smallest_number <- NA # 2520
+largest_factor <- 10 # 10 or 20
+divisible_tracker <- rep(FALSE, times=largest_factor)
+
+# Check every possible number in order
+for (possible_number in 1:1000000) {
+
+  # Check each possible factor for modulo being zero  
+  for (i in 1:largest_factor) {
+    divisible_tracker[i] = (possible_number %% i == 0)
+  }  
+  
+  # Stop looking when all of elements of divisible_tracker are TRUE
+  if (all(divisible_tracker)==TRUE){
+    smallest_number <- possible_number
+    break
+  }
+}
 
 # Write out results ------------------------------------------------------------
 cat("The smallest positive number that is evenly divisible by
-    all of the numbers from 1 to ", largest_factor, " is ", smallest_multiple, ".", 
+    all of the numbers from 1 to ", largest_factor, " is ", smallest_number, ".", 
     sep="")
