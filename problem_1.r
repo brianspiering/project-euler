@@ -30,9 +30,9 @@ final_sum_method_3 <- (sum(sequence[sequence %% 3 == 0])
 
 # A vectorized method ----------------------------------------------------------
 # This method uses less memory by creating only the parts of the sequence needed.
-sum_numbers_mod_3 <- sum(seq(0, stop_number-1, 3))
-sum_numbers_mod_5 <- sum(seq(0, stop_number-1, 5))
-sum_numbers_mod_15 <- sum(seq(0, stop_number-1, 15))
+sum_numbers_mod_3 <- sum(seq(from=0, to=stop_number-1, by=3))
+sum_numbers_mod_5 <- sum(seq(from=0, to=stop_number-1, by=5))
+sum_numbers_mod_15 <- sum(seq(from=0, to=stop_number-1, by=15))
 final_sum_method_2 <- sum_numbers_mod_3 + sum_numbers_mod_5 - sum_numbers_mod_15
 
 # Write out results -----------------------------------------------------------
