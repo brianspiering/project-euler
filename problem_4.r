@@ -1,4 +1,4 @@
-#! /usr/bin/env Rscript
+#!/usr/bin/env Rscript
 
 # File description -------------------------------------------------------------
 # Solutions to problem 4, http://projecteuler.net/problem=4
@@ -12,10 +12,20 @@
 # => 906609
 
 # Setup ------------------------------------------------------------------------
-require("stringr")  # Useful for string processing
 cat("\014")         # Clear console
 rm(list=ls())       # Delete all variables
 
+# List of packages for session
+.packages = c("stringr") 
+
+# Install required CRAN packages (if not already installed)
+.inst <- .packages 08n% installed.packages()
+if(length(.packages[!.inst]) > 0) install.packages(.packages[!.inst])
+
+# Load packages into session 
+lapply(.packages, require, character.only=TRUE)
+
+# Define functions
 strReverse <- function(x){
   # From strsplit docs
   sapply(lapply(strsplit(x, NULL), rev), paste, collapse = "") 
