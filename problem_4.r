@@ -19,7 +19,7 @@ rm(list=ls())       # Delete all variables
 .packages = c("stringr") 
 
 # Install required CRAN packages (if not already installed)
-.inst <- .packages 08n% installed.packages()
+.inst <- .packages %in% installed.packages()
 if(length(.packages[!.inst]) > 0) install.packages(.packages[!.inst])
 
 # Load packages into session 
@@ -36,42 +36,37 @@ is_palidrome <- function(number){
   isTRUE(as.character(number) == strReverse(as.character(number)))
 }
 
-# Smart brute force method -----------------------------------------------------
+# A (slightly clever) brute force method ---------------------------------------
 
 # Define variables
 max <- 999
 min <- 100
 max_palindrome <- 0
 
-# Walk through pairs of pairs
+# Compare products of 2 numbers (x & y) to be palidrome
+# Start at largest possible digit
+# Walk down y till no solution is possible, 
+# then walk down x till no solution is possible
+cat("Finding the largest palindrome from the product of two 3-digit numbers...\n\n")
 x <- max
 while (x > min){
   y <- max
-  max_value_seen <- 0
   while (y > min){
     product <-  x * y
-    cat(x, y, product, "\n")
-#     readline("press return to continue")  
-    
-    # Check if current product is the largest palidrome 
-    if ((is_palidrome(product)==TRUE) && (product > max_palindrome)) {
-      max_palindrome <- product
-      print(max_palindrome)      
-    }
-  
-    # Check if current product is getting smaller
-    if (product < max_value_seen) {
+    if (product > max_palindrome) {
+      if (is_palidrome(product)==TRUE) {
+        max_palindrome <- product 
+      }
+    } else{
+      # Stop looking in current row if current product is smaller than 
+      # current max palindrome
       y <- min
-    } else {
-      max_value_seen <- product
     }
-
-    y <- y - 1
+    y <- y - 1    
   }
-  
   x <- x - 1
 }
 
 # Write out results ------------------------------------------------------------
-cat("The largest palindrome made from the product of two 3-digit numbers", 
-    max_palindrome)
+cat("The largest palindrome made from the product of two 3-digit numbers ", 
+    max_palindrome, ".", sep="")
