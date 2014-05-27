@@ -22,11 +22,11 @@ largest_factor <- 10 # 10 or 20
 divisible_tracker <- rep(FALSE, times=largest_factor)
 
 # Check every possible number in order
-for (possible_number in 1:1000000) {
+for (possible_number in 1:10000000000000) {
 
   # Check each possible factor for modulo being zero  
   for (i in 1:largest_factor) {
-    divisible_tracker[i] = (possible_number %% i == 0)
+    divisible_tracker[i] <- (possible_number %% i == 0)
   }  
   
   # Stop looking when all of elements of divisible_tracker are TRUE
