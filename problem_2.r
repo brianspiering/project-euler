@@ -11,7 +11,6 @@
 # By considering the terms in the Fibonacci sequence whose values do not 
 # exceed four million, find the sum of the even-valued terms.
 #
-# => 4613732
 
 # Setup ------------------------------------------------------------------------
 cat("\014")  # Clear console
@@ -88,3 +87,5 @@ while (TRUE) {
 total_print <- total_method_2
 cat("The sum of the even-valued terms in a Fibonacci sequence below",
     n_terms, "is", total_print, ".")
+
+# => 4613732

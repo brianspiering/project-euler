@@ -9,7 +9,7 @@
 #
 # Find the largest palindrome made from the product of two 3-digit numbers.
 #
-# => 906609
+
 
 # Setup ------------------------------------------------------------------------
 cat("\014")         # Clear console
@@ -70,3 +70,5 @@ while (x > min){
 # Write out results ------------------------------------------------------------
 cat("The largest palindrome made from the product of two 3-digit numbers ", 
     max_palindrome, ".", sep="")
+
+# => 906609

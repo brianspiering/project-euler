@@ -10,7 +10,6 @@
 # What is the smallest positive number that is evenly divisible 
 # by all of the numbers from 1 to 20?
 #
-# => 232792560
 
 # Setup ------------------------------------------------------------------------
 cat("\014")         # Clear console
@@ -40,3 +39,5 @@ for (possible_number in 1:10000000000000) {
 cat("The smallest positive number that is evenly divisible by
     all of the numbers from 1 to ", largest_factor, " is ", smallest_number, ".", 
     sep="")
+
+# => 232792560

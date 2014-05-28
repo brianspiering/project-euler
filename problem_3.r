@@ -7,7 +7,6 @@
 #
 # What is the largest prime factor of the number 600851475143 ?
 # 
-# => 6857
 
 # Setup ------------------------------------------------------------------------
 cat("\014")   # Clear console
@@ -67,3 +66,5 @@ if (length(unique(results_from_all_methods)) == 1) {
 } else {
   stop("Check methods")
 }
+
+# => 6857
