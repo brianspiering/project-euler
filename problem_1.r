@@ -24,6 +24,13 @@ stop_number <- 1000
 
 cat("\014")   # Clear console
 
+# Define functions
+benchmark_results <- function(method_number, method_function){
+  benchmark_results <- benchmark(method_function(stop_number))
+  cat("The time for method ", method_number, " is ", benchmark_results$elapsed, 
+      " seconds.\n", sep="")
+}
+
 # A brute force method -----------------------------------------------------------
 multiples_3_and_5_method_1 <- function(stop_number){
   sum_multiples <- 0
@@ -35,7 +42,10 @@ multiples_3_and_5_method_1 <- function(stop_number){
   return(sum_multiples)
 }
 
-sum_method_1 <- multiples_3_and_5_method_1(stop_number)
+# Get results
+sum_method_1 <- multiples_3_and_5_method_1(stop_number) 
+# Benchmark method
+benchmark_results(1, multiples_3_and_5_method_1) 
 
 # A vectorized method ----------------------------------------------------
 multiples_3_and_5_method_2 <- function(stop_number){
@@ -46,24 +56,34 @@ multiples_3_and_5_method_2 <- function(stop_number){
   return(sum_multiples)
 }
 
+# Get results
 sum_method_2 <- multiples_3_and_5_method_2(stop_number)
+# Benchmark method
+benchmark_results(2, multiples_3_and_5_method_2) 
 
 # Another vectorized method ----------------------------------------------------------
 # This method uses less memory by creating only the parts of the sequence needed.
-sum_numbers_mod_3 <- sum(seq(from=0, to=stop_number-1, by=3))
-sum_numbers_mod_5 <- sum(seq(from=0, to=stop_number-1, by=5))
-sum_numbers_mod_15 <- sum(seq(from=0, to=stop_number-1, by=15))
-final_sum_method_3 <- sum_numbers_mod_3 + sum_numbers_mod_5 - sum_numbers_mod_15
+multiples_3_and_5_method_3 <- function(stop_number){
+  sum_numbers_mod_3 <- sum(seq(from=0, to=stop_number-1, by=3))
+  sum_numbers_mod_5 <- sum(seq(from=0, to=stop_number-1, by=5))
+  sum_numbers_mod_15 <- sum(seq(from=0, to=stop_number-1, by=15))
+  sum_multiples <- sum_numbers_mod_3 + sum_numbers_mod_5 - sum_numbers_mod_15
+  return(sum_multiples)
+}
+# Get results
+sum_method_3 <- multiples_3_and_5_method_3(stop_number)
+# Benchmark method
+benchmark_results(3, multiples_3_and_5_method_3) 
 
 # Write out results -----------------------------------------------------------
-results_from_all_methods <- c(final_sum_method_1,
-                              final_sum_method_2, 
-                              final_sum_method_3)
+results_from_all_methods <- c(sum_method_1,
+                              sum_method_2, 
+                              sum_method_3)
 
 if (length(unique(results_from_all_methods)) == 1) {
   results_final <- results_from_all_methods[1]
-  cat("The sum of all multiples of 3 or 5 below ", stop_number, 
-      " is ", results_final, ".", sep="")
+  cat("\nThe sum of all multiples of 3 or 5 below ", stop_number, 
+      " is ", results_final, ".\n\n", sep="")
 } else {
   stop("Check methods")
 }
