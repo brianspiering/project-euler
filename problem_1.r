@@ -2,12 +2,12 @@
 
 # File description -------------------------------------------------------------
 # Solutions to "Multiples of 3 and 5"
-# problem 1, http://projecteuler.net/problem=1
+# Problem 1, http://projecteuler.net/problem=1
 #
 # If we list all the natural numbers below 10 that are multiples of 3 or 5, 
 # we get 3, 5, 6 and 9. The sum of these multiples is 23.
-# Find the sum of all the multiples of 3 or 5 below 1000.
 #
+# Find the sum of all the multiples of 3 or 5 below 1000.
 
 # Setup ------------------------------------------------------------------------
 rm(list=ls()) # Delete all variables
@@ -20,14 +20,14 @@ if(length(.packages[!.inst]) > 0) install.packages(.packages[!.inst])
 
 # Load packages into session 
 lapply(.packages, require, character.only=TRUE)
-stop_number <- 1000
+stop_number <- 1000 # 10 or 1000
 
 cat("\014")   # Clear console
 
 # Define functions
 benchmark_results <- function(method_number, method_function){
   benchmark_results <- benchmark(method_function(stop_number))
-  cat("The time for method ", method_number, " is ", benchmark_results$elapsed, 
+  cat("Method ", method_number, " takes ", benchmark_results$elapsed, 
       " seconds.\n", sep="")
 }
 
@@ -47,7 +47,7 @@ sum_method_1 <- multiples_3_and_5_method_1(stop_number)
 # Benchmark method
 benchmark_results(1, multiples_3_and_5_method_1) 
 
-# A vectorized method ----------------------------------------------------
+# A vectorized method ----------------------------------------------------------
 multiples_3_and_5_method_2 <- function(stop_number){
   sequence <- (1:stop_number-1)
   sum_multiples <- (sum(sequence[sequence %% 3 == 0]) 
@@ -61,7 +61,7 @@ sum_method_2 <- multiples_3_and_5_method_2(stop_number)
 # Benchmark method
 benchmark_results(2, multiples_3_and_5_method_2) 
 
-# Another vectorized method ----------------------------------------------------------
+# Another vectorized method ----------------------------------------------------
 # This method uses less memory by creating only the parts of the sequence needed.
 multiples_3_and_5_method_3 <- function(stop_number){
   sum_numbers_mod_3 <- sum(seq(from=0, to=stop_number-1, by=3))
