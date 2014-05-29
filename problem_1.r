@@ -11,25 +11,11 @@
 
 # Setup ------------------------------------------------------------------------
 rm(list=ls()) # Delete all variables
-# List of packages for session
-.packages = c("rbenchmark") 
-
-# Install required CRAN packages (if not already installed)
-.inst <- .packages %in% installed.packages()
-if(length(.packages[!.inst]) > 0) install.packages(.packages[!.inst])
-
-# Load packages into session 
-lapply(.packages, require, character.only=TRUE)
-stop_number <- 1000 # 10 or 1000
-
 cat("\014")   # Clear console
+stop_number <- 10 # 10 | 1000
 
 # Define functions
-benchmark_results <- function(method_number, method_function){
-  benchmark_results <- benchmark(method_function(stop_number))
-  cat("Method ", method_number, " takes ", benchmark_results$elapsed, 
-      " seconds.\n", sep="")
-}
+source("benchmark_methods.r")
 
 # A brute force method -----------------------------------------------------------
 multiples_3_and_5_method_1 <- function(stop_number){
@@ -45,7 +31,7 @@ multiples_3_and_5_method_1 <- function(stop_number){
 # Get results
 sum_method_1 <- multiples_3_and_5_method_1(stop_number) 
 # Benchmark method
-benchmark_results(1, multiples_3_and_5_method_1) 
+benchmark_methods(1, multiples_3_and_5_method_1) 
 
 # A vectorized method ----------------------------------------------------------
 multiples_3_and_5_method_2 <- function(stop_number){
@@ -59,7 +45,7 @@ multiples_3_and_5_method_2 <- function(stop_number){
 # Get results
 sum_method_2 <- multiples_3_and_5_method_2(stop_number)
 # Benchmark method
-benchmark_results(2, multiples_3_and_5_method_2) 
+benchmark_methods(2, multiples_3_and_5_method_2) 
 
 # Another vectorized method ----------------------------------------------------
 # This method uses less memory by creating only the parts of the sequence needed.
@@ -73,7 +59,7 @@ multiples_3_and_5_method_3 <- function(stop_number){
 # Get results
 sum_method_3 <- multiples_3_and_5_method_3(stop_number)
 # Benchmark method
-benchmark_results(3, multiples_3_and_5_method_3) 
+benchmark_methods(3, multiples_3_and_5_method_3) 
 
 # Write out results -----------------------------------------------------------
 results_from_all_methods <- c(sum_method_1,
