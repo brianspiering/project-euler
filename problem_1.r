@@ -12,12 +12,14 @@
 # Setup ------------------------------------------------------------------------
 rm(list=ls()) # Delete all variables
 cat("\014")   # Clear console
-stop_number <- 10 # 10 | 1000
 
 # Define functions
 source("benchmark_methods.r")
 
-# A brute force method -----------------------------------------------------------
+# Define variables
+stop_number <- 10 # 10 | 1000
+
+# A brute force method ---------------------------------------------------------
 multiples_3_and_5_method_1 <- function(stop_number){
   sum_multiples <- 0
   for (i in 1:stop_number-1) {
