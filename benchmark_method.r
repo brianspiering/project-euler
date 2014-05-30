@@ -18,9 +18,9 @@ lapply(.packages, require, character.only=TRUE)
 cat("\014")   # Clear console
 
 # Define benchmark methods function ------------------------------------------- 
-benchmark_methods <- function(method_number, method_function){
+benchmark_method <- function(method_number, method_function, method_argument){
   # Get the benchmarks for current function
-  benchmark_methods <- benchmark(method_function(stop_number))
+  benchmark_methods <- benchmark(method_function(method_argument))
   # Print benchmarks results
   cat("Method ", method_number, " takes ", benchmark_methods$elapsed, 
       " seconds.\n", sep="")
