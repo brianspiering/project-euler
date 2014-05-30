@@ -20,7 +20,7 @@ source("benchmark_method.r")
 stop_number <- 1000 # 10 | 1000
 
 # A brute force method ---------------------------------------------------------
-multiples_3_and_5_method_1 <- function(stop_number){
+calc_multiples_3_and_5_method_1 <- function(stop_number){
   sum_multiples <- 0
   for (i in 1:stop_number-1) {
     if ((i %% 3 == 0) || (i %% 5 == 0)) {
@@ -30,15 +30,16 @@ multiples_3_and_5_method_1 <- function(stop_number){
   return(sum_multiples)
 }
 
-# Get results
-sum_method_1 <- multiples_3_and_5_method_1(stop_number) 
+# Calculate answer
+sum_method_1 <- calc_multiples_3_and_5_method_1(stop_number) 
+
 # Benchmark method
 benchmark_method(method_number=1, 
-                 method_function = multiples_3_and_5_method_1,
-                 method_argument = stop_number) 
+                 method_function=calc_multiples_3_and_5_method_1,
+                 method_argument=stop_number) 
 
 # A vectorized method ----------------------------------------------------------
-multiples_3_and_5_method_2 <- function(stop_number){
+calc_multiples_3_and_5_method_2 <- function(stop_number){
   sequence <- (1:stop_number-1)
   sum_multiples <- (sum(sequence[sequence %% 3 == 0]) 
                          + sum(sequence[sequence %% 5 == 0])
@@ -46,28 +47,31 @@ multiples_3_and_5_method_2 <- function(stop_number){
   return(sum_multiples)
 }
 
-# Get results
-sum_method_2 <- multiples_3_and_5_method_2(stop_number)
+# Calculate answer
+sum_method_2 <- calc_multiples_3_and_5_method_2(stop_number)
+
 # Benchmark method
 benchmark_method(method_number=2, 
-                 method_function = multiples_3_and_5_method_2,
-                 method_argument = stop_number) 
+                 method_function=calc_multiples_3_and_5_method_2,
+                 method_argument=stop_number) 
 
 # Another vectorized method ----------------------------------------------------
 # This method uses less memory by creating only the parts of the sequence needed.
-multiples_3_and_5_method_3 <- function(stop_number){
+calc_multiples_3_and_5_method_3 <- function(stop_number){
   sum_numbers_mod_3 <- sum(seq(from=0, to=stop_number-1, by=3))
   sum_numbers_mod_5 <- sum(seq(from=0, to=stop_number-1, by=5))
   sum_numbers_mod_15 <- sum(seq(from=0, to=stop_number-1, by=15))
   sum_multiples <- sum_numbers_mod_3 + sum_numbers_mod_5 - sum_numbers_mod_15
   return(sum_multiples)
 }
-# Get results
-sum_method_3 <- multiples_3_and_5_method_3(stop_number)
+
+# Calculate answer
+sum_method_3 <- calc_multiples_3_and_5_method_3(stop_number)
+
 # Benchmark method
 benchmark_method(method_number=3, 
-                 method_function = multiples_3_and_5_method_3,
-                 method_argument = stop_number) 
+                 method_function=calc_multiples_3_and_5_method_3,
+                 method_argument=stop_number) 
 
 # Write out results -----------------------------------------------------------
 results_from_all_methods <- c(sum_method_1,
