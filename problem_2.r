@@ -17,7 +17,7 @@ cat("\014")  # Clear console
 rm(list=ls()) # Delete all variables
 
 # Define functions
-source("benchmark_methods.r")
+source("benchmark_method.r")
 
 # Define variables
 n_terms <- 10 # 10 | 4000000000
