@@ -14,10 +14,10 @@ rm(list=ls()) # Delete all variables
 cat("\014")   # Clear console
 
 # Define functions
-source("benchmark_methods.r")
+source("benchmark_method.r")
 
 # Define variables
-stop_number <- 10 # 10 | 1000
+stop_number <- 1000 # 10 | 1000
 
 # A brute force method ---------------------------------------------------------
 multiples_3_and_5_method_1 <- function(stop_number){
@@ -33,7 +33,9 @@ multiples_3_and_5_method_1 <- function(stop_number){
 # Get results
 sum_method_1 <- multiples_3_and_5_method_1(stop_number) 
 # Benchmark method
-benchmark_methods(1, multiples_3_and_5_method_1) 
+benchmark_method(method_number=1, 
+                 method_function = multiples_3_and_5_method_1,
+                 method_argument = stop_number) 
 
 # A vectorized method ----------------------------------------------------------
 multiples_3_and_5_method_2 <- function(stop_number){
@@ -47,7 +49,9 @@ multiples_3_and_5_method_2 <- function(stop_number){
 # Get results
 sum_method_2 <- multiples_3_and_5_method_2(stop_number)
 # Benchmark method
-benchmark_methods(2, multiples_3_and_5_method_2) 
+benchmark_method(method_number=2, 
+                 method_function = multiples_3_and_5_method_2,
+                 method_argument = stop_number) 
 
 # Another vectorized method ----------------------------------------------------
 # This method uses less memory by creating only the parts of the sequence needed.
@@ -61,7 +65,9 @@ multiples_3_and_5_method_3 <- function(stop_number){
 # Get results
 sum_method_3 <- multiples_3_and_5_method_3(stop_number)
 # Benchmark method
-benchmark_methods(3, multiples_3_and_5_method_3) 
+benchmark_method(method_number=3, 
+                 method_function = multiples_3_and_5_method_3,
+                 method_argument = stop_number) 
 
 # Write out results -----------------------------------------------------------
 results_from_all_methods <- c(sum_method_1,
