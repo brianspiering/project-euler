@@ -34,7 +34,7 @@ for (i in 3:n_terms) {
 } 
 
 # Get selected sums of within Fibonacci sequence
-even_fib_method_1 <- function(stop_number){
+even_fib_method_1 <- function(n_terms){
   sum_even_fib <- 0 
   for (i in 1:length(fib_seq)) {
     if (fib_seq[i] %% 2 == 0) {
@@ -47,58 +47,65 @@ even_fib_method_1 <- function(stop_number){
 # Get results
 sum_method_1 <- even_fib_method_1(n_terms) 
 # Benchmark method
-benchmark_methods(1, even_fib_method_1) 
+benchmark_method(method_number=1, 
+                 method_function = even_fib_method_1,
+                 method_argument = n_terms) 
 
 # Another brute force method ---------------------------------------------------
-# NOTE: Needs to be refactored into a function then benchmarked
-# Slighty better but still horrible big O
-counter <- 1
-total_method_2 <- 0
-previous <- 0
-current <- 1
-
-while (TRUE) {
-  # Update Fibonacci
-  old_current <- current
-  current <- previous + current
-  previous <- old_current
-  
-  # Test how many terms
-  if (counter >= n_terms) {
-    break
-  } else {
-    counter <- counter +1 
-  }
-  
-  # Update running total
-  if (current %% 2 == 0) total_method_2 = total_method_2 + current
-}
+# # Slighty better but still horrible big O
+# counter <- 1
+# sum_even_fib <- 0
+# previous <- 0
+# current <- 1
+# 
+# even_fib_method_2 <- function(n_terms){
+#   while (TRUE) {
+#     # Update Fibonacci
+#     old_current <- current
+#     current <- previous + current
+#     previous <- old_current
+#     
+#     # Test how many terms
+#     if (counter >= n_terms) {
+#       break
+#     } else {
+#       counter <- counter +1 
+#     }
+#     
+#     # Update running total
+#     if (current %% 2 == 0) sum_even_fib = sum_even_fib + current
+#   }
+#   return(sum_even_fib)
+# }
+# 
+# # Get results
+# sum_method_2 <- even_fib_method_2(n_terms)
+# # Benchmark method
+# benchmark_method(method_number=2, 
+#                  method_function = even_fib_method_2,
+#                  method_argument = n_terms) 
 
 # A vectorized method ----------------------------------------------------------
 # Define a Fibonacci sequence
-# Find even-numbered elements and sum them
+require("numbers")
+fib_seq <- fibonacci(n_terms, sequence = TRUE)
 
-# A functional method ----------------------------------------------------------
-# fib <- function(n){
-#   # HT: http://bit.?ly/1iVRHLE
-#   a=0
-#   b=1
-#   for(i in 1:n){
-#     t=b
-#     b=a
-#     a=a+t
-#     }
-#   a
-# } 
+even_fib_method_3 <- function(fib_seq){
+  # Sum even-valued terms of the sequence
+  sum_even_fibo <- sum(fib_seq[fib_seq %% 2 == 0])
+  return(sum_even_fibo)
+}
+sum_method_3 <- even_fib_method_3(fib_seq)
+# Benchmark method
+benchmark_method(method_number=3, 
+                 method_function = even_fib_method_3,
+                 method_argument = fib_seq) 
 
-# A package method -------------------------------------------------------------
-# require("numbers")
-# fib_seq <- fibonacci(n_terms, sequence = TRUE)
 
 # Write out results ------------------------------------------------------------
-results_from_all_methods <- c(sum_method_1)
-#                               sum_method_2, 
-#                               sum_method_3)
+results_from_all_methods <- c(sum_method_1,
+#                               sum_method_2)
+                              sum_method_3)
 
 if (length(unique(results_from_all_methods)) == 1) {
   results_final <- results_from_all_methods[1]
