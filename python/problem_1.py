@@ -17,4 +17,5 @@ def sum_multiples(n):
     return (sum(xrange(0,n,3)) + sum(xrange(0,n,5)) - sum(xrange(0,n,15)))
 
 if __name__ == "__main__":
-    print(sum_multiples(n))
+    print("The sum of all the multiples of 3 or 5 below {0} is {1}."
+            .format(n, sum_multiples(n)))
