@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" Solutions to "Multiples of 3 and 5", aka Problem 1
+""" Solution to "Multiples of 3 and 5", aka Problem 1
 
 http://projecteuler.net/problem=1
 
@@ -12,7 +12,7 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 
 n = 1000 # 10 | 1000
 
-def sum_multiples():
+def sum_multiples(n):
     "Sum of all the multiples of 3 or 5 below n."
     return (sum(xrange(0,n,3)) + sum(xrange(0,n,5)) - sum(xrange(0,n,15)))
 
