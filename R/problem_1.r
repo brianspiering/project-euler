@@ -56,7 +56,7 @@ benchmark_method(method_number=2,
                  method_argument=stop_number) 
 
 # Another vectorized method ----------------------------------------------------
-# This method uses less memory by creating only the parts of the sequence needed.
+# This method uses less memory by creating only the parts of the sequence needed
 calc_multiples_3_and_5_method_3 <- function(stop_number){
   sum_numbers_mod_3 <- sum(seq(from=0, to=stop_number-1, by=3))
   sum_numbers_mod_5 <- sum(seq(from=0, to=stop_number-1, by=5))
