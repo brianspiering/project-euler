@@ -16,12 +16,9 @@ n = 1000  # 10 | 1000
 
 def sum_multiples_method_1(n):
     "Sum of all the multiples of 3 or 5 below n."
+    sum_multiples = 0
     for i in xrange(n):
-        try:
-            if i % 3 == 0 or i % 5 == 0:
-                sum_multiples += i
-        except:
-            sum_multiples = 1
+        if i % 3 == 0 or i % 5 == 0: sum_multiples += i
  
     return sum_multiples
 
@@ -32,4 +29,4 @@ def sum_multiples_method_2(n):
 if __name__ == "__main__":
     print("The sum of all the multiples of 3 or 5 below {0} is {1}."
             .format(n, 
-                choice([sum_multiples_method_1(n), sum_multiples_method_1(n)])))
+                choice([sum_multiples_method_1(n), sum_multiples_method_2(n)])))
