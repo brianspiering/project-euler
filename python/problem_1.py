@@ -16,14 +16,18 @@ n = 1000  # 10 | 1000
 
 def sum_multiples_method_1(n):
     "Sum of all the multiples of 3 or 5 below n."
+    
+    # Check each value, one at time
     sum_multiples = 0
     for i in xrange(n):
         if i % 3 == 0 or i % 5 == 0: sum_multiples += i
- 
+
     return sum_multiples
 
 def sum_multiples_method_2(n):
     "Sum of all the multiples of 3 or 5 below n."
+   
+    # Generate a sequence of only needed values then sum them
     return (sum(xrange(0,n,3)) + sum(xrange(0,n,5)) - sum(xrange(0,n,15)))
 
 if __name__ == "__main__":
