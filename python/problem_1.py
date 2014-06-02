@@ -4,18 +4,32 @@
 
 http://projecteuler.net/problem=1
 
-If we list all the natural numbers below 10 that are multiples of 3 or 5, 
+If we list all the natural numbers below 10 that are multiples of 3 or 5
 we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
 Find the sum of all the multiples of 3 or 5 below 1000.
 """
 
-n = 1000 # 10 | 1000
+from random import choice
 
-def sum_multiples(n):
+n = 1000  # 10 | 1000
+
+def sum_multiples_method_1(n):
+    "Sum of all the multiples of 3 or 5 below n."
+    for i in xrange(n):
+        try:
+            if i % 3 == 0 or i % 5 == 0:
+                sum_multiples += i
+        except:
+            sum_multiples = 1
+ 
+    return sum_multiples
+
+def sum_multiples_method_2(n):
     "Sum of all the multiples of 3 or 5 below n."
     return (sum(xrange(0,n,3)) + sum(xrange(0,n,5)) - sum(xrange(0,n,15)))
 
 if __name__ == "__main__":
     print("The sum of all the multiples of 3 or 5 below {0} is {1}."
-            .format(n, sum_multiples(n)))
+            .format(n, 
+                choice([sum_multiples_method_1(n), sum_multiples_method_1(n)])))
