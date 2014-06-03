@@ -10,21 +10,15 @@ What is the sum of the digits of the number 2^1000?
 """
 
 i = 1 # 0 = test, 1 = final
-number_and_power = ((2,15), #base, power
-                    (2, 1000))
+base_exp = ((2,15), # base, exponent
+            (2, 1000))
 
 def calc_sum_digits(n):
     "Sum individual digits of given number."
-    sum_digits = 0
-    for digit in str(n):
-        sum_digits += int(digit)
-
-    return sum_digits
-
-sum_digits = calc_sum_digits((number_and_power[i][0]**number_and_power[i][1]))
+    return sum([int(_) for _ in str(n)])
 
 if __name__ == "__main__":
     print("The sum of all the digits in the number {0}^{1} is {2}."
-            .format(number_and_power[i][0], 
-                    number_and_power[i][1],
-                    sum_digits))
+            .format(base_exp[i][0], 
+                    base_exp[i][1],
+                    calc_sum_digits((base_exp[i][0]**base_exp[i][1]))))
