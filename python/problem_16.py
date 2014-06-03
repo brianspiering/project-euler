@@ -10,7 +10,7 @@ What is the sum of the digits of the number 2^1000?
 """
 
 i = 1 # 0 = test, 1 = final
-base_exp = ((2,15), # base, exponent
+base_exp = ((2, 15), # base, exponent
             (2, 1000))
 
 def calc_sum_digits(n):
