@@ -79,7 +79,7 @@ results_from_all_methods <- c(sum_method_1,
                               sum_method_3)
 
 if (length(unique(results_from_all_methods)) == 1) {
-  results_final <- results_from_all_methods[1]
+  results_final <- sample(results_from_all_methods, size=1)
   cat("\nThe sum of all multiples of 3 or 5 below ", stop_number, 
       " is ", results_final, ".\n\n", sep="")
 } else {

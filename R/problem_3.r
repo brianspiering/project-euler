@@ -61,8 +61,8 @@ results_from_all_methods <- c(largest_prime_factor_method_1,
                               largest_prime_factor_method_2)
 
 if (length(unique(results_from_all_methods)) == 1) {
-  results_final <- results_from_all_methods[1]
-  cat("The largest prime factor of", number, "is", results_final, ".")
+  results_final <- sample(results_from_all_methods, size=1)
+  cat("The largest prime factor of ", number, " is ", results_final, ".", sep="")
 } else {
   stop("Check methods")
 }
