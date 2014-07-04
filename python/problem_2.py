@@ -21,7 +21,7 @@ def calc_fib_num_v1(n):
     return int(fib_nummber)
 
 def calc_fib_num_v2():
-    "Find a Fibonacci number with mutliple assignment."
+    "Fibonacci sequence generator."
     x, y = 0, 1
     while True:
         yield x
