@@ -13,7 +13,11 @@ What is the smallest positive number that is evenly divisible by all of the numb
 n = 10 # 10 | 20
 
 def find_smalles_mulitple(n):
-    return 2520
+    "Brute force method"
+    for i in xrange(n,100000000):
+        if all([i % _ == 0 for _ in xrange(1,n+1)]):
+            break
+    return i
 
 if __name__ == "__main__":
     print("The smallest positive number that is evenly divisible by " +
