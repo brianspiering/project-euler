@@ -27,5 +27,6 @@ def is_palindrome(n):
     return str(n) == str(n)[::-1]
 
 if __name__ == "__main__":
-    print("The largest palindrome made from the product of two {0}-digit numbers is {1}."
-        .format(len(str(low)), find_largest_palindrome(low, high)))
+    print("The largest palindrome made from the product of " + 
+          "two {0}-digit numbers is {1}."
+          .format(len(str(low)), find_largest_palindrome(low, high)))
