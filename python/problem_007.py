@@ -10,12 +10,24 @@ By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that 
 What is the 10 001st prime number?
 """
 
-n = 6 # 6 | 10001
+n = 10001 # 6 | 10001
 
-def primes(n):
-    "Generator function for primes"
-    return 13
+ordinal_number_suffixes = {6:'th', 10001:'st'}
+
+def gen_primes():
+    "Generator function for prime numbers"
+    n = 2
+    primes = set()
+    while True:
+        for p in primes:
+            if n % p == 0:
+                break
+        else:
+            primes.add(n)
+            yield n
+        n += 1
 
 if __name__ == "__main__":
-    print("The {0}th prime number is {1}."
-          .format(n, primes(n)))
+    primes = gen_primes()
+    print("The {0}{1} prime number is {2}."
+          .format(n, ordinal_number_suffixes[n], [primes.next() for _ in xrange(n)][-1]))
