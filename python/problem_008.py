@@ -33,7 +33,7 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
 
 from operator import mul
 
-n = 4 # 4 | 13
+n = 13 # 4 | 13
 
 number = '\
 73167176531330624919225119674426574742355349194934\
@@ -57,11 +57,10 @@ number = '\
 05886116467109405077541002256983155200055935729725\
 71636269561882670428252483600823257530420752963450'
 
-def find_greatest_product_sequence(n):
-    return max([reduce(mul, int(number[i:i+n]) for i, v in enumerate(number))])
-    
-digits = [9, 9, 8, 9]
+def find_greatest_product_sequence(n, number):
+    "Find the greatest product of n length sequence in number"
+    return max([reduce(mul, [int(_) for _ in number[i:i+n]]) for i, v in enumerate(number)])
 
 if __name__ == "__main__":
-    print("The {0} adjacent digits in the 1000-digit number that have the greatest product are {1}. The product of those digits is {2}."
-          .format(n, digits, reduce(mul, digits)))
+    print("The greatest product of {0} adjacent digits in the 1000-digit number is {1}."
+          .format(n, find_greatest_product_sequence(n, number)))
