@@ -59,7 +59,7 @@ number = '\
 
 def find_greatest_product_sequence(n, number):
     "Find the greatest product of n length sequence in number"
-    return max([reduce(mul, [int(_) for _ in number[i:i+n]]) for i, v in enumerate(number)])
+    return max([reduce(mul, map(int, list(number[i:i+n]))) for i, v in enumerate(number)])
 
 if __name__ == "__main__":
     print("The greatest product of {0} adjacent digits in the 1000-digit number is {1}."
