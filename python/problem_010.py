@@ -12,6 +12,10 @@ Find the sum of all the primes below two million.
 
 n = 2000000 # 10 | 2000000
 
+def prime_sieve(n):
+    "Return a list of prime integers up to n"
+    pass
+
 def gen_primes():
     "A generator function for prime numbers"
     n = 2
