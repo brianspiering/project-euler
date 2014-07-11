@@ -58,8 +58,8 @@ grid_raw = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"""
 
 def preprocess_grid(grid_raw):
-    grid_lines = (grid_raw.split("\n"))
-    grid_lines_integers = [map(int, line.split(" ")) for line in grid_lines]
+    grid_lines = (grid_raw.split("\n")) # Split at line breaks
+    grid_lines_integers = [map(int, line.split(" ")) for line in grid_lines] # Convert each str to an integer
     return grid_lines_integers
 
 def find_largest_product_adjacent(grid, n):
@@ -69,16 +69,21 @@ def find_largest_product_adjacent(grid, n):
 
 def find_largest_product_horizontal(grid, n):
     "Find the largest product of four adjacent numbers that appear horizontally"
-    return max([reduce(mul, line[i:i+n]) for line in grid for i, item in enumerate(line)])
+    return max([reduce(mul, [grid[id_row][id_col+_] for _ in xrange(n)]) 
+                for id_row, line in enumerate(grid) 
+                for id_col, item in enumerate(line) if id_col < (len(grid)-n)])
 
 def find_largest_product_vertical(grid, n):
-    pass
+    "Find the largest product of four adjacent numbers that appear vertically"
+    return max([reduce(mul, [grid[id_row + _][id_col] for _ in xrange(n)]) 
+                for id_row, line in enumerate(grid) 
+                for id_col, item in enumerate(line) if id_row < (len(grid)-n)])
 
 def find_largest_product_diagonal(grid, n):
     pass
 
 if __name__ == "__main__":
     grid = preprocess_grid(grid_raw) 
-    print("The greatest product of four adjacent numbers in the same direction"+
-          " (up, down, left, right, or diagonally) in the given grid is {0}."
-          .format(find_largest_product_adjacent(grid, n)))
+    print("The greatest product of {0} adjacent numbers in the same direction" \
+          " (up, down, left, right, or diagonally) in the given grid is {1}."
+          .format(n, find_largest_product_adjacent(grid, n)))
