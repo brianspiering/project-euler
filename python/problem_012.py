@@ -23,15 +23,15 @@ We can see that 28 is the first triangle number to have over five divisors.
 What is the value of the first triangle number to have over five hundred divisors?
 """
 
-stop_n_divisors = 500 # 5 | 500
+stop_n_divisors = 5 # 5 | 500
 
-def sequence_triangle(limit):
+def sequence_triangle():
     "A generator for triangle numbers, running summing previous numbers."
-    c = 1
-    while c < limit:
-        yield sum(range(c + 1))
+    c = 0
+    while True:
         c += 1
-
+        yield sum(range(c + 1))
+        
 def factors(n):  
     "All factors of n"
     # From stackoverlow  
