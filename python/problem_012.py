@@ -22,11 +22,32 @@ We can see that 28 is the first triangle number to have over five divisors.
 
 What is the value of the first triangle number to have over five hundred divisors?
 """
-n = 5 # 5 | 500
 
-def triangle(n):
-    return None
+stop_n_divisors = 500 # 5 | 500
+
+def sequence_triangle(limit):
+    "A generator for triangle numbers, running summing previous numbers."
+    c = 1
+    while c < limit:
+        yield sum(range(c + 1))
+        c += 1
+
+def factors(n):  
+    "All factors of n"
+    # From stackoverlow  
+    return set(reduce(list.__add__, 
+                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+
+def calc_triangle_divisor(stop_n_divisors):
+    "Calucute first triangle number to have over n divisors"
+    triangle_number = sequence_triangle(1000000000)
+    current_n_divisors = 0
+    while current_n_divisors <= stop_n_divisors:
+        current_triangle_number = next(triangle_number)
+        current_n_divisors = len(factors(current_triangle_number))
+    return current_triangle_number
 
 if __name__ == "__main__":
     print("The value of the first triangle number to have over "\
-            "{0} divisors is {1}." .format(n, triangle(n)))
+            "{0} divisors is {1}."
+            .format(stop_n_divisors, calc_triangle_divisor(stop_n_divisors)))
