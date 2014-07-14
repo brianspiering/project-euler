@@ -40,11 +40,10 @@ def factors(n):
 
 def calc_triangle_divisor(stop_n_divisors):
     "Calucute first triangle number to have over n divisors"
-    triangle_number = sequence_triangle(1000000000)
-    current_n_divisors = 0
-    while current_n_divisors <= stop_n_divisors:
+    triangle_number = sequence_triangle() # Create generator
+    current_triangle_number = next(triangle_number) # Get 1st value
+    while len(factors(current_triangle_number)) <= stop_n_divisors:
         current_triangle_number = next(triangle_number)
-        current_n_divisors = len(factors(current_triangle_number))
     return current_triangle_number
 
 if __name__ == "__main__":
