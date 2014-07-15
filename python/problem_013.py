@@ -110,7 +110,7 @@ numbers = """37107287533902102798797998220837590246510135740250
 53503534226472524250874054075591789781264330331690"""
 
 def preprocess_numbers(numbers):
-    "Create a list of lists containing integers"
+    "Create a list of integers"
     # Split at line breaks
     numbers_lines = (numbers.split("\n")) 
     # Convert each str to an integer
@@ -120,5 +120,5 @@ def preprocess_numbers(numbers):
 if __name__ == "__main__":
     numbers = preprocess_numbers(numbers)
     print("The first ten digits of the sum of the " \
-            "following one-hundred 50-digit numbers is {0}."
+            "given one-hundred 50-digit numbers is {0}."
             .format(str(sum(numbers))[0:10]))
