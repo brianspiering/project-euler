@@ -8,7 +8,7 @@ http://projecteuler.net/problem=13
 Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
 """
 
-n = """37107287533902102798797998220837590246510135740250
+numbers = """37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538
 74324986199524741059474233309513058123726617309629
 91942213363574161572522430563301811072406154908250
@@ -109,10 +109,16 @@ n = """37107287533902102798797998220837590246510135740250
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690"""
 
-def total(n):
-    return None
+def preprocess_numbers(numbers):
+    "Create a list of lists containing integers"
+    # Split at line breaks
+    numbers_lines = (numbers.split("\n")) 
+    # Convert each str to an integer
+    numbers_lines_integers = [int(number) for number in numbers_lines]
+    return numbers_lines_integers
 
 if __name__ == "__main__":
+    numbers = preprocess_numbers(numbers)
     print("The first ten digits of the sum of the " \
             "following one-hundred 50-digit numbers is {0}."
-            .format(total(n)))
+            .format(str(sum(numbers))[0:10]))
