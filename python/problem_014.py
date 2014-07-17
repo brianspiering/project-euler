@@ -20,28 +20,30 @@ Which starting number, under one million, produces the longest chain?
 NOTE: Once the chain starts the terms are allowed to go above one million.
 """
 
-n = 1000000
+n = 1000000 # 13 #=> 20 | 1000000
 
-def collatz_seq(n, chain_length=1):
-    if n == 1:
-        return chain_length
-    elif n % 2 == 0:
-        chain_length += 1
-        return collatz_seq(n/2, chain_length)
-    elif n % 2 != 0:
-        chain_length += 1
-        return collatz_seq(3*n +1, chain_length)
+def calc_collatz_seq(n, collatz_hash = {1:1}):
+    """Recursive function to define a Collatz sequence. Hash previous values."""
+    if n in collatz_hash:
+        return collatz_hash[n]
+    if n % 2 == 0:
+        counter = 1 + calc_collatz_seq((n/2))
+    else:
+        counter = 1 + calc_collatz_seq((3*n+1))
+    collatz_hash[n] = counter
+    return counter
 
-def find_longest_collatz_seq_v1():
-    "Brute force checking"
-    return None
+def find_longest_collatz_seq(n):
+    """Find longest Collatz sequence under given number."""
+    return max([calc_collatz_seq(_) for _ in xrange(1,n)])
 
-def find_longest_collatz_seq_v2():
-    """Store all chains in a hash."""
-    return None
-
+def find_n_with_longest_seq(n, len_seq):
+    """Find the number associated with the longest sequence."""
+    for e in xrange(1,n):
+        if calc_collatz_seq(e) == len_seq:
+            return e
 
 if __name__ == "__main__":
     print("The starting number, under one million, produces the "\
             "longest Collatz sequence chain is {0}."
-            .format(find_longest_collatz_seq()))
+            .format(find_n_with_longest_seq(n, find_longest_collatz_seq(n))))
