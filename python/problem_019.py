@@ -25,13 +25,13 @@ end_year = 2000
 weekdays = {day:i for i,day in enumerate(day_name)}
 
 def count_first_sundays(start_year, end_year):
-    "For each year and each month, find the first day of the month. Add to counter"
-    total_sundays = 0
+    "For each year and each month, find the first day of the month. Add to counter."
+    total_days_of_week = 0
     for year in xrange(start_year, end_year+1):
         for month in xrange(1,13):
             if monthrange(year,month)[0] == weekdays["Sunday"]:
-                total_sundays += 1
-    return total_sundays
+                total_days_of_week += 1
+    return total_days_of_week
 
 if __name__ == "__main__":
     print("The number of Sundays falling on the first of the month "\
