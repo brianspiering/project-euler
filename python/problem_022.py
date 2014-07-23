@@ -27,7 +27,13 @@ def total_names():
     "Find total of all the name scores."
     names = process_file('names.txt') # Load names
     names.sort() # Alphabeticalize
-    return "'In Progress'"
+    letters = list(string.ascii_uppercase) # Get list of letters
+    total_name_scores = 0
+    for i, name in enumerate(names):
+        total_letter = sum([letters.index(letter)+1 for letter in name]) # Get total of letters
+        name_score = total_letter * i+1
+        total_name_scores += name_score
+    return total_name_scores
 
 if __name__ == "__main__":
     print("The total of all the name scores in the file is {}."
