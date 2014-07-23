@@ -21,17 +21,19 @@ def factors(n):
     "Find factors of n."
     return [_ for _ in xrange(1,n) if n % _ == 0]
 
-def make_factor_sum_dict(n):
-    "Make a dictionary of numbers (key) and sum of all factors (value) below n."
-    return {_:sum(factors(_)) for _ in xrange(1,n)}
+def calc_factor_sum(n):
+    "Make a list of sum of all factors for each index below n."
+    return [sum(factors(_)) for _ in xrange(1,n+1)]
 
 def sum_amicable_numbers(n):
     "Find sum of amicable numbers below n."
-    factor_sum_dict = make_factor_sum_dict(n)
+    factor_sum = calc_factor_sum(n)
+    print(factor_sum)
     # Sum key value pairs where key and pairs are the same.
     # eg:
-    # factor_sum_dict[220] = 284
-    # factor_sum_dict[284] = 220
+    # factor_sum[220] = 284
+    # factor_sum[284] = 220
+    # something like - s.intersection_update(t), https://docs.python.org/2/library/sets.html
     return "'In Progress'"
 
 if __name__ == "__main__":
