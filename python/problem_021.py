@@ -23,18 +23,17 @@ def factors(n):
 
 def calc_factor_sum(n):
     "Make a list of sum of all factors for each index below n."
-    return [sum(factors(_)) for _ in xrange(1,n+1)]
+    return [sum(factors(_)) for _ in xrange(n+1)]
 
 def sum_amicable_numbers(n):
     "Find sum of amicable numbers below n."
-    factor_sum = calc_factor_sum(n)
-    print(factor_sum)
-    # Sum key value pairs where key and pairs are the same.
-    # eg:
-    # factor_sum[220] = 284
-    # factor_sum[284] = 220
-    # something like - s.intersection_update(t), https://docs.python.org/2/library/sets.html
-    return "'In Progress'"
+    sum_amicable_numbers = 0
+    factor_sums = calc_factor_sum(n)
+    for (i, current_factor_sum) in enumerate(factor_sums): 
+        if current_factor_sum < n: # Avoid IndexError
+            if factor_sums[current_factor_sum] == i and i > 2 and i != current_factor_sum:
+                sum_amicable_numbers += current_factor_sum
+    return sum_amicable_numbers
 
 if __name__ == "__main__":
     print("The sum of all the amicable numbers under {0} is {1}."
