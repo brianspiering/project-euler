@@ -15,7 +15,28 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 
 """
 
-def calc_something():
+def factors(n):
+    "Find factors of n."
+    return [_ for _ in xrange(1,n) if n % _ == 0]
+
+def is_abundant_num(n):
+    "Check if a number is abundant - the sum of factors of n exceeds n itself."
+    return sum(factors(n)) > n
+
+def abundant_nums():
+    "A generator for abundant - the sum of factors of n exceeds n itself."
+    pass
+
+def abundant_num_sum_sieve():
+    "A sieve for integers that are not sums of abundant numbers."
+    a = [False]*28123 # Set all possible to the limit of the sieve
+
+def total_nonabundant_num_sum(a):
+    
+    # Rough code 
+    a = [True, False, True, False] # Sample data
+    total_nonabundant_num_sum = sum([i+1 for i,e in enumerate(a) if e == False])
+
     return "'In Progress'"
 
 if __name__ == "__main__":
