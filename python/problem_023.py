@@ -31,7 +31,7 @@ def abundant_num_sum_sieve():
     "A sieve for integers that are not sums of abundant numbers."
     a = [False]*28123 # Set all possible to the limit of the sieve
 
-def total_nonabundant_num_sum(a):
+def total_nonabundant_num_sum():
     
     # Rough code 
     a = [True, False, True, False] # Sample data
@@ -42,4 +42,4 @@ def total_nonabundant_num_sum(a):
 if __name__ == "__main__":
     print("The sum of all the positive integers which cannot be written " \
             "as the sum of two abundant numbers is {}."
-            .format(calc_something()))
+            .format(total_nonabundant_num_sum()))
