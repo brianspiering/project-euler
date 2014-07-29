@@ -16,19 +16,23 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
 from __future__ import print_function
 import itertools
 
-digits = range(10) #  range(3) | range(10)
-
-# {n_elements (place_number, place_name}
+# {range_argument: {place_number, place_name}}
 perm_picker = { 3: (6, 'sixth'),
                 10: (1000000, "millionth")}
 
-def calc_something(digits):
-    return "'In Progress'"
+range_argument = 10 # 3 = demo; 10
+
+def find_permutation(range_argument, place):
+    "Find the specific (place) lexicographic permutation for give range argument."
+    perm_tuple = list(itertools.permutations(xrange(range_argument)))[place-1]
+    perm_string = "".join([str(n) for n in perm_tuple])
+    return perm_string
 
 if __name__ == "__main__":
-    print("The {} lexicographic permutation of the digits ".format(perm_picker[len(digits)][1]), end="")
+    digits = range(range_argument)
+    print("The {} lexicographic permutation of the digits ".format(perm_picker[range_argument][1], end=""))
     for digit in digits[:-2]:
         print("{}".format(digit), end=", ")
     print("{}".format(digits[-2]), end=", and ")
     print("{}".format(digits[-1]), end=" ")
-    print("is {}.".format(calc_something(digits)))
+    print("is {}.".format(find_permutation(range_argument, perm_picker[range_argument][0])))
