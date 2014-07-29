@@ -28,18 +28,27 @@ What is the first term in the Fibonacci sequence to contain 1000 digits?
 
 """
 
-num_digits = 3 # 3 | 1000
+num_digits = 1000 # 3 | 1000
 
 
 def fib():
+    "A Fibonacci sequence generator."
     a, b = 0, 1
     while True:
         a, b = b, a+b
         yield a
 
-def calc_something(num_digits):
-    return "'In Progress'"
+def find_fib_term(num_digits):
+    "Find the 1st fib term that has the given number of digits."
+    f = fib()
+    counter = 0
+    while True:
+        current_fib = f.next()
+        counter += 1
+        if len(str(current_fib)) == num_digits:
+            break
+    return counter
 
 if __name__ == "__main__":
-    print("The first term in the Fibonacci sequence to contain {} digits is {}."
-            .format(num_digits, calc_something(num_digits)))
+    print("The first term in the Fibonacci sequence to contain {} digits is {}th term."
+            .format(num_digits, find_fib_term(num_digits)))
