@@ -12,11 +12,13 @@ Starting in the top left corner of a 2×2 grid, and only being able to move to t
 How many such routes are there through a 20×20 grid?
 """
 
-grid_size = 2 # 2 | 20
+from math import factorial
+
+grid_size = 20 # 2 | 20
 
 def cal_n_routes_in_a_grid(grid_size):
-    "Assume grid is square"
-    return 6
+    "Assuming grid is square, find the central binomial coefficient."
+    return factorial(2*grid_size)/(factorial(grid_size)*factorial(grid_size))
 
 if __name__ == "__main__":
     print("The number of routes through a {0}x{1} grid is {2}."
