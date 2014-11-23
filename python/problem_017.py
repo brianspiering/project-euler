@@ -9,7 +9,7 @@ If the numbers 1 to 5 are written out in words: one, two, three, four, five, the
 If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
 """
 
-n = 5 # 5 | 1000
+n = 1000 # 5 | 1000
 
 # Arabic Number: English Word
 number_dict = { 1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',
