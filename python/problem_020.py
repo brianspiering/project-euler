@@ -19,7 +19,7 @@ import operator as op
 n = 100 # 10 | 100
 
 def calc_sum_factorial(n):
-    "Find the sum the sum of the digits in the number n!"
+    "Find the sum of the digits in the number n!"
     return reduce(op.add, [int(_) for _ in str(factorial(n))])
 
 if __name__ == "__main__":
