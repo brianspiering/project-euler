@@ -1,5 +1,5 @@
-import problem_1
 import unittest
+import problem_1
 
 class TestProblem1(unittest.TestCase):
     knownValues = ( (10, 23), # n, sum_multiples
