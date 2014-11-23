@@ -14,12 +14,13 @@ Find the sum of the digits in the number 100!
 """
 
 from math import factorial
+import operator as op
 
 n = 100 # 10 | 100
 
 def calc_sum_factorial(n):
     "Find the sum the sum of the digits in the number n!"
-    return reduce(lambda x, y: x+y, [int(_) for _ in str(factorial(n))])
+    return reduce(op.add, [int(_) for _ in str(factorial(n))])
 
 if __name__ == "__main__":
     print("The sum of the digits in the number {0}! is {1}."
