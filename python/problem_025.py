@@ -28,7 +28,7 @@ What is the first term in the Fibonacci sequence to contain 1000 digits?
 
 """
 
-num_digits = 100 # 3 | 1000
+num_digits = 1000 # 3 | 1000
 
 def fib():
     "A Fibonacci sequence generator."
