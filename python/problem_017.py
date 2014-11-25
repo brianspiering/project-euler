@@ -9,7 +9,7 @@ If the numbers 1 to 5 are written out in words: one, two, three, four, five, the
 If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
 """
 
-n = 1000 # 5 | 1000
+stop_number = 5 # 5 | 1000
 
 # Arabic Number: English Word
 number_dict = { 1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',
@@ -23,11 +23,20 @@ def gen_letter_count(number_dict):
     "For each value in a given dict, count number of letters"
     return {_[0]:len(_[1]) for _ in number_dict.items()}
 
-def count_letters(n, letter_count_dict):
+def count_letters(stop_number, letter_count_dict):
     "Count number of letters in words from 1 to n"
-    return sum([letter_count_dict[_] for _ in xrange(1,n+1)])
+    sum_letters = 0
+    for n in range(1,stop_number+1):
+        if len(str(n)) == 1:
+            sum_letters += letter_count_dict[n]
+        elif len(str(n)) == 2:
+            pass
+        elif len(str(n)) == 3:
+            pass
 
+    return sum_letters
+    
 if __name__ == "__main__":
     letter_count_dict = gen_letter_count(number_dict)
     print("The number of letters in the numbers from 1 to {0} is {1}."
-            .format(n, count_letters(n, letter_count_dict)))
+            .format(stop_number, count_letters(stop_number, letter_count_dict)))
