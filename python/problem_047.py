@@ -26,16 +26,24 @@ n = 2 # 2 | 3 | 4
 
 def is_prime(n):
     "Find if given number is a prime"
-    return all([n % i != 0 for i in xrange(2, n)])
+    if n < 2:
+        return False
+    else:
+        return all([n % i != 0 for i in xrange(2, n)])
 
 def factors(n):
     "Find factors of given number."
-    return set(reduce(list.__add__, 
-                ([i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0)))
+    return list(set(reduce(list.__add__, 
+                ([i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0))))
 
 def find_consective_int_with_prime_factors(n):
     ""
-    pass
+    e = 2
+    while True:
+        print e, factors(e), sum(map(is_prime, factors(e))) == n
+        e += 1
+        if e == 18:
+            break
 
 if __name__ == "__main__":
     print("The first of first four consecutive integers to have "\
