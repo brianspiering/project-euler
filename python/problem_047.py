@@ -25,7 +25,7 @@ n = 2 # 2 | 3 | 4
 
 def is_prime(n):
     "Find if given number is a prime"
-    pass
+    return all([n % i != 0 for i in xrange(2, n)])
 
 def find_factors(n):
     "Find factors of given number."
