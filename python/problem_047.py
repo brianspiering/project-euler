@@ -22,7 +22,7 @@ What is the first of these numbers?
 """
 from math import sqrt
 
-n = 2 # 2 | 3 | 4
+n_distinct_prime_factors = 2 # 2 | 3 | 4
 
 def is_prime(n):
     "Find if given number is a prime"
@@ -32,20 +32,38 @@ def is_prime(n):
         return all([n % i != 0 for i in xrange(2, n)])
 
 def factors(n):
-    "Find factors of given number."
-    return list(set(reduce(list.__add__, 
-                ([i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0))))
+    "Find a list of factors of given number."
+    return [[i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
 
-def find_consective_int_with_prime_factors(n):
+def find_consective_int_with_prime_factors(n_distinct_prime_factors):
     ""
-    e = 2
+    n = 2
+    previous_n_has_distinct_primes = False
+
     while True:
-        print e, factors(e), sum(map(is_prime, factors(e))) == n
-        e += 1
-        if e == 18:
+        # Check if there are current number of distint primes
+        # FIXME: doesn't check for distinct primes
+        has_distinct_primes = any([sum(map(is_prime, i)) == n_distinct_prime_factors
+                                     for i in factors(n)])
+        
+        if has_distinct_primes:
+            if previous_n_has_distinct_primes:
+                return n
+            else:
+                previous_n_has_distinct_primes = True
+        else:
+            previous_n_has_distinct_primes = False
+
+        print n, factors(n), has_distinct_primes
+    
+        n += 1
+
+        # Manually stop
+        if n == 18:
             break
 
 if __name__ == "__main__":
     print("The first of first four consecutive integers to have "\
             "{0} distinct prime factors is {1}."
-            .format(n, find_consective_int_with_prime_factors(n)))
+            .format(n_distinct_prime_factors, 
+                    find_consective_int_with_prime_factors(n_distinct_prime_factors)))
