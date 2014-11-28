@@ -20,6 +20,7 @@ Find the first four consecutive integers to have four distinct prime factors.
 What is the first of these numbers?
 
 """
+from math import sqrt
 
 n = 2 # 2 | 3 | 4
 
@@ -27,9 +28,10 @@ def is_prime(n):
     "Find if given number is a prime"
     return all([n % i != 0 for i in xrange(2, n)])
 
-def find_factors(n):
+def factors(n):
     "Find factors of given number."
-    pass
+    return set(reduce(list.__add__, 
+                ([i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0)))
 
 def find_consective_int_with_prime_factors(n):
     ""
