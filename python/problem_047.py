@@ -31,9 +31,10 @@ def is_prime(n):
     else:
         return all([n % i != 0 for i in xrange(2, n)])
 
-def factors(n):
+def distinct_factors(n):
     "Find a list of factors of given number."
-    return [[i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
+    factors = [[i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
+    return filter(lambda x: len(set(x)) == len(x), factors) # Remove non-distinct
 
 def find_consective_int_with_prime_factors(n_distinct_prime_factors):
     ""
@@ -42,9 +43,8 @@ def find_consective_int_with_prime_factors(n_distinct_prime_factors):
 
     while True:
         # Check if there are current number of distint primes
-        # FIXME: doesn't check for distinct primes
         has_distinct_primes = any([sum(map(is_prime, i)) == n_distinct_prime_factors
-                                     for i in factors(n)])
+                                     for i in distinct_factors(n)])
         
         if has_distinct_primes:
             if previous_n_has_distinct_primes:
@@ -54,16 +54,13 @@ def find_consective_int_with_prime_factors(n_distinct_prime_factors):
         else:
             previous_n_has_distinct_primes = False
 
-        print n, factors(n), has_distinct_primes
+        print n, distinct_factors(n), has_distinct_primes
     
         n += 1
 
-        # Manually stop
-        if n == 18:
-            break
-
 if __name__ == "__main__":
-    print("The first of first four consecutive integers to have "\
-            "{0} distinct prime factors is {1}."
-            .format(n_distinct_prime_factors, 
-                    find_consective_int_with_prime_factors(n_distinct_prime_factors)))
+    print("The first of first {0} consecutive integers to have "\
+            "{1} distinct prime factors is {2}."
+            .format(n_distinct_prime_factors,
+                    n_distinct_prime_factors,
+                    find_consective_int_with_prime_factors(n_distinct_prime_factors)-1))
