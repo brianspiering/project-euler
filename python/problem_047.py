@@ -24,43 +24,46 @@ from math import sqrt
 
 n_distinct_prime_factors = 2 # 2 | 3 | 4
 
-def is_prime(n):
-    "Find if given number is a prime"
-    if n < 2:
-        return False
-    else:
-        return all([n % i != 0 for i in xrange(2, n)])
+def distinct_prime_factors(n):
+    prime_factors = []
+    d = 2
+    while d*d <= n:
+        while (n % d) == 0:
+            prime_factors.append(d) 
+            n /= d
+        d += 1
+    if n > 1:
+       prime_factors.append(n)
 
-def distinct_factors(n):
-    "Find a list of factors of given number."
-    factors = [[i, n//i] for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
-    return filter(lambda x: len(set(x)) == len(x), factors) # Remove non-distinct
+    # Check for distinct factors   
+    if len(set(prime_factors)) == len(prime_factors):
+        return prime_factors
+    else:
+        return []
 
 def find_consective_int_with_prime_factors(n_distinct_prime_factors):
     ""
-    n = 2
-    previous_n_has_distinct_primes = False
+    n = 2 # 2, 642
+    record_of_distinct_primes = [False, False]
 
     while True:
         # Check if there are current number of distint primes
-        has_distinct_primes = any([sum(map(is_prime, i)) == n_distinct_prime_factors
-                                     for i in distinct_factors(n)])
-        
-        if has_distinct_primes:
-            if previous_n_has_distinct_primes:
-                return n
-            else:
-                previous_n_has_distinct_primes = True
-        else:
-            previous_n_has_distinct_primes = False
+        record_of_distinct_primes.append(len(distinct_prime_factors(n)) == n_distinct_prime_factors)
 
-        print n, distinct_factors(n), has_distinct_primes
-    
+        print n, distinct_prime_factors(n), record_of_distinct_primes
+
+        if all(record_of_distinct_primes[n-1:]):
+                return n
+        
         n += 1
+
+        # Manually stop
+        if n == 18:
+            break
 
 if __name__ == "__main__":
     print("The first of first {0} consecutive integers to have "\
             "{1} distinct prime factors is {2}."
             .format(n_distinct_prime_factors,
                     n_distinct_prime_factors,
-                    find_consective_int_with_prime_factors(n_distinct_prime_factors)-1))
+                    find_consective_int_with_prime_factors(n_distinct_prime_factors)-(n_distinct_prime_factors-1)))
