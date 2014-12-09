@@ -5,7 +5,9 @@
 
 https://projecteuler.net/problem=491
 
-We call a positive integer double pandigital if it uses all the digits 0 to 9 exactly twice (with no leading zero). For example, 40561817703823564929 is one such number.
+We call a positive integer double pandigital if it uses all the digits 0 to 9 
+exactly twice (with no leading zero). 
+For example, 40561817703823564929 is one such number.
 
 How many double pandigital numbers are divisible by 11?
 """
@@ -28,5 +30,5 @@ def n_double_pandigital_mod_11():
                 for current_tuple in double_pandigitals)
 
 if __name__ == "__main__":
-    print("The number of double pandigital numbers are divisible by 11 is: {0}\n"
+    print("The number of double pandigital numbers are divisible by 11 is: {0}"
             .format(n_double_pandigital_mod_11()))
