@@ -19,11 +19,11 @@ n = 10000
 
 def factors(n):
     "Find factors of n."
-    return [_ for _ in xrange(1,n) if n % _ == 0]
+    return [_ for _ in range(1,n) if n % _ == 0]
 
 def calc_factor_sum(n):
     "Make a list of sum of all factors for each index below n."
-    return [sum(factors(_)) for _ in xrange(n+1)]
+    return [sum(factors(_)) for _ in range(n+1)]
 
 def sum_amicable_numbers(n):
     "Find sum of amicable numbers below n."
@@ -31,10 +31,11 @@ def sum_amicable_numbers(n):
     factor_sums = calc_factor_sum(n)
     for (i, current_factor_sum) in enumerate(factor_sums): 
         if current_factor_sum < n: # Avoid IndexError
-            if factor_sums[current_factor_sum] == i and i > 2 and i != current_factor_sum:
-                sum_amicable_numbers += current_factor_sum
+            if (factor_sums[current_factor_sum] == i) and (i > 2) and (i != current_factor_sum):
+                    sum_amicable_numbers += current_factor_sum
     return sum_amicable_numbers
 
 if __name__ == "__main__":
-    print("The sum of all the amicable numbers under {0} is {1}."
-            .format(n, sum_amicable_numbers(n)))
+    print("The sum of all the amicable numbers under {0:,} is {1:,}."
+            .format(n, 
+                    sum_amicable_numbers(n)))
