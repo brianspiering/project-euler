@@ -14,12 +14,13 @@ Evaluate the sum of all the amicable numbers under 10000.
 """
 
 from collections import Counter
+from functools import reduce
 
 n = 10000
 
 def factors(n):
     "Find factors of n."
-    return [_ for _ in range(1,n) if n % _ == 0]
+    return {_ for _ in range(1,n) if n % _ == 0}
 
 def calc_factor_sum(n):
     "Make a list of sum of all factors for each index below n."
