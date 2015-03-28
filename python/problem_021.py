@@ -14,16 +14,16 @@ Evaluate the sum of all the amicable numbers under 10000.
 """
 
 from collections import Counter
-from functools import reduce, lru_cache
+from functools import reduce, lru_cache as memo
 
 n = 10000
 
-@lru_cache(maxsize=32)
+@memo(maxsize=32)
 def factors(n):
     "Find factors of a number."
     return {_ for _ in range(1,n) if n % _ == 0}
 
-@lru_cache(maxsize=32)
+@memo(maxsize=32)
 def calc_factor_sum(n):
     "Make a list of sum of all factors for each index below n."
     return [sum(factors(_)) for _ in range(n+1)]
