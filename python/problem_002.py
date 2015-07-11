@@ -49,5 +49,5 @@ def sum_even_fib_nums_method_2(n):
     return sum(even(under_a_number(calc_fib_num_v2(), n)))
 
 if __name__ == "__main__":
-    print("The sum of the even-valued Fibonacci terms below {0} is {1}."
+    print("The sum of the even-valued Fibonacci terms below {0:,} is {1:,}."
             .format(n, sum_even_fib_nums_method_2(n)))
